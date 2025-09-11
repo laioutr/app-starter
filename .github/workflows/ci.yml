@@ -15,6 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.1
+
       - uses: actions/setup-node@v5
         with:
           node-version: 20
@@ -22,10 +26,10 @@ jobs:
       - run: npm i -g --force corepack@latest && corepack enable
 
       - name: Install dependencies
-        run: npx nypm@latest i
+        run: pnpm install
 
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
 
   test:
     runs-on: ubuntu-latest
@@ -33,6 +37,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.1
+
       - uses: actions/setup-node@v5
         with:
           node-version: 20
@@ -40,10 +48,10 @@ jobs:
       - run: npm i -g --force corepack@latest && corepack enable
 
       - name: Install dependencies
-        run: npx nypm@latest i
+        run: pnpm install
 
       - name: Playground prepare
-        run: npm run dev:prepare
+        run: pnpm run dev:prepare
 
       - name: Test
-        run: npm run test
+        run: pnpm run test
