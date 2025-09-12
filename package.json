@@ -45,7 +45,7 @@
     "@nuxt/kit": "3.16.2",
     "@vueuse/core": "13.1.0",
     "pinia": "3.0.2",
-    "zod": "^3.25.61",
+    "zod": "3.25.61",
     "@pinia/colada": "0.17.1",
     "@pinia/colada-nuxt": "0.2.1"
   },
