@@ -1,3 +1,5 @@
 <template>
-  <LfcOrchestrRequestEditor />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
