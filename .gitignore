@@ -1,6 +1,9 @@
 # Laioutr files
 laioutrrc.json
 
+# NPM
+.npmrc
+
 # Dependencies
 node_modules
 
