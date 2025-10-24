@@ -4,6 +4,9 @@ laioutrrc.json
 # Dependencies
 node_modules
 
+# NPM
+.npmrc
+
 # Logs
 *.log*
 
