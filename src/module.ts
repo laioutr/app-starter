@@ -49,15 +49,13 @@ export default defineNuxtModule<ModuleOptions>({
       orchestrDirs: [resolveRuntimeModule("server/orchestr")],
     });
 
-    // Install peer-dependency modules only on prepare-step. Needs to be added in the playground as well.
+    // Install peer-dependency modules only on prepare-step.
+    // This makes auto-imports and import-aliases work. Remove any modules you might not need.
     if (nuxt.options._prepare) {
-      const modulesToInstall = [
-        "@laioutr-core/orchestr",
-        "@laioutr-core/frontend-core",
-        "@nuxt/image",
-      ];
-
-      for (const module of modulesToInstall) await installModule(module);
+      await installModule("@nuxt/image");
+      await installModule("@laioutr-core/frontend-core");
+      await installModule("@laioutr-core/orchestr");
+      await installModule("@laioutr-app/ui");
     }
 
     // Shared
