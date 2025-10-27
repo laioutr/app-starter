@@ -1,14 +1,18 @@
 import srcModule from "../src/module";
 import laioutrrc from "../laioutrrc.json";
 
-// Do not install ui-app to avoid conflicts with unocss.
-const rcWithoutUi = {
+const appsToUninstall = ["@laioutr-app/ui"];
+
+// Uncomment the below line if you don't want/need Shopify
+// appsToUninstall.push("@laioutr-app/shopify")
+
+const clean_laioutrrc = {
   ...laioutrrc,
 
   laioutr: {
     projectSecretKey: false,
   },
-  apps: laioutrrc.apps.filter((app) => app.name !== "@laioutr-app/ui"),
+  apps: laioutrrc.apps.filter((app) => !appsToUninstall.includes(app.name)),
 };
 
 export default defineNuxtConfig({
@@ -21,9 +25,13 @@ export default defineNuxtConfig({
   ],
   laioutr: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    laioutrrc: rcWithoutUi as any,
+    laioutrrc: clean_laioutrrc as any,
   },
-  myModule: {},
+  i18n: {
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
+  },
   devtools: { enabled: true },
   compatibilityDate: "2025-09-11",
   vite: {

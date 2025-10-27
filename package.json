@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "orchestr-dev": "npm run dev:prepare && nuxi dev orchestr-playground",
+    "orchestr-dev": "infisical run -c \"npm run dev:prepare && nuxi dev orchestr-playground\"",
     "dev": "npm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare orchestr-playground",

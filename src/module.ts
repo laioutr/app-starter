@@ -1,9 +1,22 @@
 import { defineNuxtModule, createResolver, installModule } from "@nuxt/kit";
+import { defu } from "defu";
 import { name, version } from "../package.json";
 import { registerLaioutrApp } from "@laioutr-core/kit";
 
-// Module options TypeScript interface definition
+/**
+ * The options the module adds to the nuxt.config.ts.
+ */
 export interface ModuleOptions {}
+
+/**
+ * The config the module adds to nuxt.runtimeConfig.public['@laioutr-app/commercetools']
+ */
+export interface RuntimeConfigModulePublic {}
+
+/**
+ * The config the module adds to nuxt.runtimeConfig['@laioutr-app/commercetools']
+ */
+export interface RuntimeConfigModulePrivate extends ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -15,18 +28,45 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {},
   async setup(_options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
+    const resolveRuntimeModule = (path: string) => resolve("./runtime", path);
 
-    // Register various laioutr-specific functions.
+    nuxt.options.build.transpile.push(resolve("./runtime"));
+
+    // Runtime configuration for this module
+    // These two statements can be removed if you don't provide a runtime config
+    nuxt.options.runtimeConfig[name] = defu(
+      nuxt.options.runtimeConfig[name] as Parameters<typeof defu>[0],
+      _options
+    );
+    nuxt.options.runtimeConfig.public[name] = defu(
+      nuxt.options.runtimeConfig.public[name] as Parameters<typeof defu>[0],
+      _options
+    );
+
     await registerLaioutrApp({
       name,
       version,
-      orchestrDirs: [resolve("runtime/server/orchestr")],
+      orchestrDirs: [resolveRuntimeModule("server/orchestr")],
     });
 
-    // Install peer-dependency modules on prepare-step, so they can be used through their aliases and auto-imports.
+    // Install peer-dependency modules only on prepare-step. Needs to be added in the playground as well.
     if (nuxt.options._prepare) {
-      await installModule("@laioutr-core/frontend-core");
-      await installModule("@laioutr-core/orchestr");
+      const modulesToInstall = [
+        "@laioutr-core/orchestr",
+        "@laioutr-core/frontend-core",
+        "@nuxt/image",
+      ];
+
+      for (const module of modulesToInstall) await installModule(module);
     }
+
+    // Shared
+    // Imports and other stuff which is shared between client and server
+
+    // Client
+    // Add plugins, composables, etc.
+
+    // Server
+    // Add server-only imports, etc.
   },
 });
