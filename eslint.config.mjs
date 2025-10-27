@@ -14,4 +14,8 @@ export default createConfigForNuxt({
   },
 })
   // your custom flat config here...
-  .append();
+  .append({
+    rules: {
+      "@typescript-eslint/no-empty-object-type": 0,
+    },
+  });
