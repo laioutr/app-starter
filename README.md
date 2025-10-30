@@ -14,7 +14,9 @@ Find and replace all on all files (CMD+SHIFT+F):
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-My new Laioutr App for doing amazing things using Nuxt.
+My new [Laioutr](https://laioutr.com) App for doing amazing things using Nuxt.
+
+See [laioutr.com](https://laioutr.com) for more information about Laioutr.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
   <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-laioutr-app?file=playground%2Fapp.vue) -->
@@ -37,7 +39,7 @@ Before installing dependencies, you need to create a copy of the `.npmrc.config`
 - `pnpm dev:prepare`
 - `pnpm orchestr-dev`
 
-That's it! You can now use My Laioutr App in your Laioutr Frontend ✨
+That's it! You can now use My Laioutr App in your [Laioutr Frontend](https://laioutr.com) ✨
 
 You can find a thorough guide on getting started with Laioutr development in our [developer guide](https://docs.laioutr.io/developer-guide/setup).
 
