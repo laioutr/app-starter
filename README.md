@@ -39,6 +39,27 @@ Before installing dependencies, you need to create a copy of the `.npmrc.config`
 
 That's it! You can now use My Laioutr App in your Laioutr Frontend ✨
 
+You can find a thorough guide on getting started with Laioutr development in our [developer guide](https://docs.laioutr.io/developer-guide/setup).
+
+## Publishing
+
+To publish a new version, run `pnpm release`. This will:
+
+- Run the tests
+- Update the changelog
+- Publish the package to npmjs.org
+- Push the changes to the repository
+
+### Private publishing
+
+If you want to publish a private package to npm.laioutr.cloud, you need to:
+
+1. Make sure you have a `.npmrc` with your private npm registry token.
+2. Add this line to the root of the `package.json` file: `"publishConfig": { "registry": "https://npm.laioutr.cloud/" }`
+3. Make sure your package-name follows the `@laioutr-org/<organization-slug>_<package-name>` format.
+
+After that you can run `pnpm release` to publish the package to npm.laioutr.cloud.
+
 ## Contribution
 
 Follow the [setup guide](https://docs.laioutr.io/developer-guide/setup) to get started.

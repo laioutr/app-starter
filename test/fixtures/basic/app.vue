@@ -1,6 +1,3 @@
 <template>
-  <div>basic</div>
+  <LfcApp />
 </template>
-
-<script setup>
-</script>

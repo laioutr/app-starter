@@ -5,7 +5,7 @@
       <!-- Main Menu -->
       <div class="mb-16 text-center">
         <h1 class="mb-3 text-4xl font-bold text-gray-900">
-          Commercetools Playground
+          Orchestr Playground
         </h1>
         <p class="text-xl text-gray-600">Choose a tool to test</p>
       </div>

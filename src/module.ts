@@ -9,12 +9,12 @@ import { registerLaioutrApp } from "@laioutr-core/kit";
 export interface ModuleOptions {}
 
 /**
- * The config the module adds to nuxt.runtimeConfig.public['@laioutr-app/commercetools']
+ * The config the module adds to nuxt.runtimeConfig.public['my-laioutr-app']
  */
 export interface RuntimeConfigModulePublic {}
 
 /**
- * The config the module adds to nuxt.runtimeConfig['@laioutr-app/commercetools']
+ * The config the module adds to nuxt.runtimeConfig['my-laioutr-app']
  */
 export interface RuntimeConfigModulePrivate extends ModuleOptions {}
 
