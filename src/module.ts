@@ -1,7 +1,8 @@
-import { defineNuxtModule, createResolver, installModule } from '@nuxt/kit';
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+import { createResolver, defineNuxtModule, installModule } from '@nuxt/kit';
 import { defu } from 'defu';
-import { name, version } from '../package.json';
 import { registerLaioutrApp } from '@laioutr-core/kit';
+import { name, version } from '../package.json';
 
 /**
  * The options the module adds to the nuxt.config.ts.

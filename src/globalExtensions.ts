@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import type { RuntimeConfigModulePrivate, RuntimeConfigModulePublic } from './module';
 
 declare module 'vue' {
