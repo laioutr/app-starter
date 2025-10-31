@@ -43,6 +43,10 @@ That's it! You can now use My Laioutr App in your [Laioutr Frontend](https://lai
 
 You can find a thorough guide on getting started with Laioutr development in our [developer guide](https://docs.laioutr.io/developer-guide/setup).
 
+## Linting and Formatting
+
+We use ESLint and Prettier to lint and format the code. This repository contains opinionated configurations for both tools. You can - of course - replace them with your own configurations.
+
 ## Publishing
 
 To publish a new version, run `pnpm release`. This will:

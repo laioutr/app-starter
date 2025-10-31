@@ -23,37 +23,36 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build build",
-    "orchestr-dev": "npm run dev:prepare && nuxi dev orchestr-playground",
     "dev": "npm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare orchestr-playground",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "lint": "eslint .",
+    "orchestr-dev": "npm run dev:prepare && nuxi dev orchestr-playground",
+    "prepack": "nuxt-module-build build",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "test": "vitest run",
-    "test:watch": "vitest watch",
-    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
+    "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@laioutr-app/shopify": "^0.11.14",
-    "@laioutr-app/ui": "^1.18.1",
     "@laioutr-core/canonical-types": "^0.14.0",
     "@laioutr-core/frontend-core": "^0.20.1",
     "@laioutr-core/kit": "^0.7.8",
-    "@laioutr-core/ui": "^0.19.7",
-    "@laioutr-core/ui-kit": "^0.19.7",
     "@nuxt/kit": "3.16.2",
+    "@pinia/colada": "0.17.1",
+    "@pinia/colada-nuxt": "0.2.1",
     "@vueuse/core": "13.1.0",
     "pinia": "3.0.2",
-    "zod": "3.25.61",
-    "@pinia/colada": "0.17.1",
-    "@pinia/colada-nuxt": "0.2.1"
+    "zod": "3.25.61"
   },
   "devDependencies": {
+    "@laioutr-app/ui": "^1.18.1",
     "@laioutr-core/orchestr-devtools": "^1.4.15",
+    "@laioutr/eslint-config": "^1.5.0",
     "@laioutr/logger": "^0.4.0",
+    "@laioutr/prettier-config": "^1.1.0",
     "@nuxt/devtools": "^2.6.3",
-    "@nuxt/eslint-config": "^1.9.0",
+    "@nuxt/devtools-ui-kit": "2.5.0",
     "@nuxt/module-builder": "1.0.1",
     "@nuxt/schema": "3.16.2",
     "@nuxt/test-utils": "3.19.1",
@@ -63,7 +62,6 @@
     "nuxt": "3.16.2",
     "typescript": "5.9.2",
     "vitest": "3.1.1",
-    "vue-tsc": "2.2.10",
-    "@nuxt/devtools-ui-kit": "2.5.0"
+    "vue-tsc": "2.2.10"
   }
 }

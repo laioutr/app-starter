@@ -1,7 +1,7 @@
-import { defineNuxtModule, createResolver, installModule } from "@nuxt/kit";
-import { defu } from "defu";
-import { name, version } from "../package.json";
-import { registerLaioutrApp } from "@laioutr-core/kit";
+import { defineNuxtModule, createResolver, installModule } from '@nuxt/kit';
+import { defu } from 'defu';
+import { name, version } from '../package.json';
+import { registerLaioutrApp } from '@laioutr-core/kit';
 
 /**
  * The options the module adds to the nuxt.config.ts.
@@ -28,34 +28,30 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {},
   async setup(_options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
-    const resolveRuntimeModule = (path: string) => resolve("./runtime", path);
+    const resolveRuntimeModule = (path: string) => resolve('./runtime', path);
 
-    nuxt.options.build.transpile.push(resolve("./runtime"));
+    nuxt.options.build.transpile.push(resolve('./runtime'));
 
     // Runtime configuration for this module
     // These two statements can be removed if you don't provide a runtime config
-    nuxt.options.runtimeConfig[name] = defu(
-      nuxt.options.runtimeConfig[name] as Parameters<typeof defu>[0],
-      _options
-    );
-    nuxt.options.runtimeConfig.public[name] = defu(
-      nuxt.options.runtimeConfig.public[name] as Parameters<typeof defu>[0],
-      _options
-    );
+    nuxt.options.runtimeConfig[name] = defu(nuxt.options.runtimeConfig[name] as Parameters<typeof defu>[0], _options);
+    nuxt.options.runtimeConfig.public[name] = defu(nuxt.options.runtimeConfig.public[name] as Parameters<typeof defu>[0], _options);
 
     await registerLaioutrApp({
       name,
       version,
-      orchestrDirs: [resolveRuntimeModule("server/orchestr")],
+      orchestrDirs: [resolveRuntimeModule('server/orchestr')],
+      sections: [resolveRuntimeModule('app/sections')],
+      blocks: [resolveRuntimeModule('app/blocks')],
     });
 
     // Install peer-dependency modules only on prepare-step.
     // This makes auto-imports and import-aliases work. Remove any modules you might not need.
     if (nuxt.options._prepare) {
-      await installModule("@nuxt/image");
-      await installModule("@laioutr-core/frontend-core");
-      await installModule("@laioutr-core/orchestr");
-      await installModule("@laioutr-app/ui");
+      await installModule('@nuxt/image');
+      await installModule('@laioutr-core/frontend-core');
+      await installModule('@laioutr-core/orchestr');
+      await installModule('@laioutr-app/ui');
     }
 
     // Shared
