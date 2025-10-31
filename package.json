@@ -25,9 +25,10 @@
   "scripts": {
     "dev": "npm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare orchestr-playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "lint": "eslint .",
-    "orchestr-dev": "npm run dev:prepare && nuxi dev orchestr-playground",
+    "orchestr-dev": "npm run orchestr-dev:prepare && nuxi dev orchestr-playground",
+    "orchestr-dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare orchestr-playground",
     "prepack": "nuxt-module-build build",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "test": "vitest run",
