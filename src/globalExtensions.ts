@@ -1,21 +1,18 @@
-import type {
-  RuntimeConfigModulePrivate,
-  RuntimeConfigModulePublic,
-} from "./module";
+import type { RuntimeConfigModulePrivate, RuntimeConfigModulePublic } from './module';
 
-declare module "vue" {
+declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     // Add your module's custom properties here
   }
 }
 
-declare module "@nuxt/schema" {
+declare module '@nuxt/schema' {
   interface PublicRuntimeConfig {
-    ["my-laioutr-app"]: RuntimeConfigModulePublic;
+    ['my-laioutr-app']: RuntimeConfigModulePublic;
   }
   interface RuntimeConfig {
-    ["my-laioutr-app"]: RuntimeConfigModulePrivate;
+    ['my-laioutr-app']: RuntimeConfigModulePrivate;
   }
 }
 
