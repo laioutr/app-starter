@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - json-editor-vue
+  - sharp
+  - unrs-resolver
+  - vue-demi
