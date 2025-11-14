@@ -9,6 +9,7 @@ Find and replace all on all files (CMD+SHIFT+F):
 
 # My Laioutr App
 
+[![Laioutr][laioutr-src]][laioutr-href]
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
@@ -80,3 +81,5 @@ Follow the [setup guide](https://docs.laioutr.io/developer-guide/setup) to get s
 [license-href]: https://npmjs.com/package/my-laioutr-app
 [nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
+[laioutr-src]: https://img.shields.io/badge/%F0%9F%A6%99_Laioutr_App-702DCE
+[laioutr-href]: https://www.laioutr.com/
