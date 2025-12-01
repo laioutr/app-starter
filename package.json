@@ -36,9 +36,9 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@laioutr-core/canonical-types": "^0.16.0",
-    "@laioutr-core/frontend-core": "^0.21.1",
-    "@laioutr-core/kit": "^0.7.10",
+    "@laioutr-core/canonical-types": "^0.18.0",
+    "@laioutr-core/frontend-core": "^0.22.2",
+    "@laioutr-core/kit": "^0.7.12",
     "@nuxt/kit": "3.16.2",
     "@pinia/colada": "0.17.1",
     "@pinia/colada-nuxt": "0.2.1",
@@ -47,8 +47,8 @@
     "zod": "3.25.61"
   },
   "devDependencies": {
-    "@laioutr-app/ui": "^1.20.0",
-    "@laioutr-core/orchestr-devtools": "^1.6.0",
+    "@laioutr-app/ui": "^1.23.0",
+    "@laioutr-core/orchestr-devtools": "^1.6.3",
     "@laioutr/eslint-config": "^1.8.8",
     "@laioutr/logger": "^0.5.1",
     "@laioutr/prettier-config": "^1.1.0",
@@ -64,5 +64,9 @@
     "typescript": "5.9.2",
     "vitest": "3.1.1",
     "vue-tsc": "2.2.10"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=10.15.0"
   }
 }
