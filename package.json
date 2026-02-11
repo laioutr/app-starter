@@ -35,6 +35,9 @@
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
     "test:watch": "vitest watch"
   },
+  "browserslist": [
+    "> 0.5% and not dead"
+  ],
   "dependencies": {
     "@laioutr-core/canonical-types": "^0.21.0",
     "@laioutr-core/core-types": "^0.25.0",
