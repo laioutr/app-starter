@@ -39,18 +39,11 @@
     "> 0.5% and not dead"
   ],
   "dependencies": {
-    "@laioutr-core/canonical-types": "^0.21.0",
-    "@laioutr-core/core-types": "^0.25.0",
-    "@laioutr-core/kit": "^0.25.0",
     "@nuxt/kit": "3.16.2",
-    "@pinia/colada": "0.17.1",
-    "@pinia/colada-nuxt": "0.2.1",
-    "@vueuse/core": "13.1.0",
-    "pinia": "3.0.2",
     "zod": "3.25.61"
   },
   "devDependencies": {
-    "@laioutr-app/ui": "^1.25.1",
+    "@laioutr-app/ui": "^1.32.2",
     "@laioutr-core/orchestr-devtools": "^1.6.7",
     "@laioutr/eslint-config": "^1.8.8",
     "@laioutr/prettier-config": "^1.1.0",
@@ -59,16 +52,22 @@
     "@nuxt/module-builder": "1.0.1",
     "@nuxt/schema": "3.16.2",
     "@nuxt/test-utils": "3.19.1",
+    "@pinia/colada": "0.17.1",
+    "@pinia/colada-nuxt": "0.2.1",
     "@types/node": "latest",
+    "@vueuse/core": "13.1.0",
     "changelogen": "^0.6.2",
     "eslint": "^9.35.0",
     "nuxt": "3.16.2",
+    "pinia": "3.0.2",
     "typescript": "5.9.2",
     "vitest": "3.1.1",
     "vue-tsc": "2.2.10"
   },
   "peerDependencies": {
-    "@laioutr-core/frontend-core": "^0.25.0"
+    "@laioutr-core/canonical-types": ">=0.22.13",
+    "@laioutr-core/core-types": ">=0.28.8",
+    "@laioutr-core/frontend-core": ">=0.28.8"
   },
   "engines": {
     "node": ">=22.12.0",
