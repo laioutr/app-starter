@@ -13,11 +13,6 @@ export default defineNuxtConfig({
   laioutr: {
     laioutrrc: laioutrrc as any,
   },
-  i18n: {
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
-  },
   devtools: { enabled: true },
   compatibilityDate: '2025-09-11',
 });
