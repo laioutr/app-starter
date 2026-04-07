@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@laioutr-app/ui": "^1.32.2",
-    "@laioutr-core/orchestr-devtools": "^1.6.7",
+    "@laioutr-core/orchestr-devtools": "^1.7.0",
     "@laioutr/eslint-config": "^1.8.8",
     "@laioutr/prettier-config": "^1.1.0",
     "@nuxt/devtools": "^2.6.3",
