@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     srcModule,
     '@pinia/nuxt', // Added to show in devtools
     '@laioutr-core/frontend-core',
-    '@laioutr-core/orchestr-devtools',
+    '@laioutr-core/devtools',
   ],
   laioutr: {
     laioutrrc: laioutrrc as any,
