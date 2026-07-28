@@ -33,20 +33,19 @@ See [laioutr.com](https://laioutr.com) for more information about Laioutr.
 
 ## Quick Setup
 
-Before installing dependencies, you need to create a copy of the `.npmrc.config` file called `.npmrc` and fill in the `NPM_LAIOUTR_TOKEN` with your npm token. You can find this token in your [project settings](https://cockpit.laioutr.cloud/o/_/p/_/settings).
+Follow the [Laioutr NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm) for connecting to [npm.laioutr.cloud](https://npm.laioutr.cloud).
 
-- `pnpm i`
-- `npx @laioutr/cli project fetch-rc -p <organization slug>/<project slug> -s <project secret key>` - This will load the `laioutrrc.json` file with the current remote project configuration.
+- `pnpm install`
+- `npx @laioutr/cli project fetch-rc --project <organization slug>/<project slug> --secret <project secret key>` - This will load the `laioutrrc.json` file with the current remote project configuration.
 - `pnpm dev:prepare`
-- `pnpm orchestr-dev`
 
 That's it! You can now use My Laioutr App in your [Laioutr Frontend](https://laioutr.com) ✨
 
-You can find a thorough guide on getting started with Laioutr development in our [developer guide](https://docs.laioutr.io/developer-guide/setup).
+You can find a thorough guide on getting started with Laioutr development in our [developer guide](https://docs.laioutr.com/getting-started/next-steps/local-setup).
 
 ## Linting and Formatting
 
-We use ESLint and Prettier to lint and format the code. This repository contains opinionated configurations for both tools. You can - of course - replace them with your own configurations.
+We use ESLint and Prettier to lint and format the code. This repository contains opinionated configurations for both tools. You can, of course, replace them with your own configurations.
 
 ## Publishing
 
@@ -63,13 +62,15 @@ If you want to publish a private package to npm.laioutr.cloud, you need to:
 
 1. Make sure you have a `.npmrc` with your private npm registry token.
 2. Add this line to the root of the `package.json` file: `"publishConfig": { "registry": "https://npm.laioutr.cloud/" }`
-3. Make sure your package-name follows the `@laioutr-org/<organization-slug>_<package-name>` format.
+3. Make sure your package-name follows the `@laioutr-org/<organization-slug>__<package-name>` format.
 
 After that you can run `pnpm release` to publish the package to npm.laioutr.cloud.
 
+More information for publishing can be found in the [NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm#publish-an-organization-package).
+
 ## Contribution
 
-Follow the [setup guide](https://docs.laioutr.io/developer-guide/setup) to get started.
+Follow the [setup guide](https://docs.laioutr.com/getting-started/next-steps/local-setup) to get started.
 
 <!-- Badges -->
 

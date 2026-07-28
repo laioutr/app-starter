@@ -41,8 +41,8 @@
     "zod": "3.25.61"
   },
   "devDependencies": {
-    "@laioutr-app/ui": "^2.5.1",
-    "@laioutr-core/devtools": "^0.33.1",
+    "@laioutr-app/ui": "^2.8.2",
+    "@laioutr-core/devtools": "^0.37.1",
     "@laioutr/eslint-config": "^1.8.8",
     "@laioutr/prettier-config": "^1.1.0",
     "@nuxt/devtools": "^2.6.3",
@@ -62,9 +62,9 @@
     "vue-tsc": "2.2.10"
   },
   "peerDependencies": {
-    "@laioutr-core/canonical-types": ">=0.24.1",
-    "@laioutr-core/core-types": ">=0.33.1",
-    "@laioutr-core/frontend-core": ">=0.33.1"
+    "@laioutr-core/canonical-types": ">=0.26.2",
+    "@laioutr-core/core-types": ">=0.37.1",
+    "@laioutr-core/frontend-core": ">=0.37.1"
   },
   "engines": {
     "node": ">=22.12.0",
