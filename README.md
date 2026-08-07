@@ -35,6 +35,12 @@ See [laioutr.com](https://laioutr.com) for more information about Laioutr.
 
 Follow the [Laioutr NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm) for connecting to [npm.laioutr.cloud](https://npm.laioutr.cloud).
 
+Render `.npmrc.config` with your registry token **before** installing — `@laioutr-core/*` and `@laioutr-app/*` cannot resolve without it:
+
+```bash
+sed "s|NPM_LAIOUTR_TOKEN|$YOUR_TOKEN|" .npmrc.config > .npmrc
+```
+
 - `pnpm install`
 - `npx @laioutr/cli project fetch-rc --project <organization slug>/<project slug> --secret <project secret key>` - This will load the `laioutrrc.json` file with the current remote project configuration.
 - `pnpm dev:prepare`
@@ -49,22 +55,48 @@ We use ESLint and Prettier to lint and format the code. This repository contains
 
 ## Publishing
 
-To publish a new version, run `pnpm release`. This will:
+Releases run through [changesets](https://github.com/changesets/changesets) and publish to npmjs.org
+with [npm trusted publishing](https://docs.npmjs.com/trusted-publishers), so CI needs no npm token and
+every release carries provenance.
 
-- Run the tests
-- Update the changelog
-- Publish the package to npmjs.org
-- Push the changes to the repository
+Day to day: run `pnpm changeset` to describe your change and merge it. The release workflow opens a
+"chore: release" PR collecting the pending changesets; merging **that** builds and publishes.
+
+### One-time setup per repository
+
+1. **Repository secrets**
+   - `NPM_LAIOUTR_TOKEN` — read access to npm.laioutr.cloud, so CI can install `@laioutr-core/*`.
+   - `RELEASE_TOKEN` — a fine-grained PAT owned by the org, scoped to this repo, with **Contents:
+     read and write** and **Pull requests: read and write**. A PR opened with the default
+     `GITHUB_TOKEN` cannot trigger workflows, so release PRs would arrive with no CI and could never
+     satisfy a required-status rule.
+
+2. **Bootstrap the package on npm.** Trusted publishing is configured on a package that already
+   exists, so the very first version has to be published by hand. `publishConfig.provenance` fails
+   outside CI — there is no OIDC provider — so disable it for that one publish:
+
+   ```bash
+   pnpm prepack
+   npm publish --access public --no-provenance
+   ```
+
+   A brand-new package can 404 on the registry for a few minutes afterwards. That is replication lag,
+   not a failed publish; check again before re-running anything.
+
+3. **Configure the trusted publisher** on the package's npm settings page: GitHub Actions,
+   this repository, workflow `release.yml`. Every release after that is tokenless.
 
 ### Private publishing
 
 If you want to publish a private package to npm.laioutr.cloud, you need to:
 
 1. Make sure you have a `.npmrc` with your private npm registry token.
-2. Add this line to the root of the `package.json` file: `"publishConfig": { "registry": "https://npm.laioutr.cloud/" }`
+2. Replace the `publishConfig` block in `package.json` with `{ "registry": "https://npm.laioutr.cloud/" }`.
+   Drop `access` and `provenance` — provenance is npmjs-only, and leaving it on makes every publish fail.
 3. Make sure your package-name follows the `@laioutr-org/<organization-slug>__<package-name>` format.
 
-After that you can run `pnpm release` to publish the package to npm.laioutr.cloud.
+After that you can run `pnpm release` to publish the package to npm.laioutr.cloud. The trusted-publisher
+setup above does not apply; authentication comes from the token in your `.npmrc`.
 
 More information for publishing can be found in the [NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm#publish-an-organization-package).
 

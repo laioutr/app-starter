@@ -16,17 +16,23 @@ jobs:
       - uses: actions/checkout@v5
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10.11.1
 
       - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version-file: .nvmrc
 
-      - run: npm i -g --force corepack@latest && corepack enable
+      - name: Create .npmrc from template
+        env:
+          NPM_LAIOUTR_TOKEN: ${{ secrets.NPM_LAIOUTR_TOKEN }}
+        run: sed "s|NPM_LAIOUTR_TOKEN|${NPM_LAIOUTR_TOKEN}|" .npmrc.config > .npmrc
 
       - name: Install dependencies
         run: pnpm install
+
+      # tsconfig.json extends ./.nuxt/tsconfig.json, which this generates. Without it the
+      # import resolver cannot read any path and every import reports as unresolved.
+      - name: Prepare
+        run: pnpm run dev:prepare
 
       - name: Lint
         run: pnpm run lint
@@ -38,14 +44,15 @@ jobs:
       - uses: actions/checkout@v5
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10.11.1
 
       - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version-file: .nvmrc
 
-      - run: npm i -g --force corepack@latest && corepack enable
+      - name: Create .npmrc from template
+        env:
+          NPM_LAIOUTR_TOKEN: ${{ secrets.NPM_LAIOUTR_TOKEN }}
+        run: sed "s|NPM_LAIOUTR_TOKEN|${NPM_LAIOUTR_TOKEN}|" .npmrc.config > .npmrc
 
       - name: Install dependencies
         run: pnpm install
