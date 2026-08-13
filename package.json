@@ -22,12 +22,8 @@
   },
   "files": [
     "dist"
-  ],
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  },
-  "scripts": {
+],
+"scripts": {
     "dev": "npm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
