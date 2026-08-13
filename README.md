@@ -85,12 +85,10 @@ Day to day: run `pnpm changeset` to describe your change and merge it. The relea
 If you want to publish a private package to npm.laioutr.cloud, you need to:
 
 1. Make sure you have a `.npmrc` with your private npm registry token.
-2. Replace the `publishConfig` block in `package.json` with `{ "registry": "https://npm.laioutr.cloud/" }`.
-   Drop `access` and `provenance` — provenance is npmjs-only, and leaving it on makes every publish fail.
+2. Add this line to the root of the `package.json` file: `"publishConfig": { "registry": "https://npm.laioutr.cloud/" }`
 3. Make sure your package-name follows the `@laioutr-org/<organization-slug>__<package-name>` format.
 
-After that you can run `pnpm release` to publish the package to npm.laioutr.cloud. The trusted-publisher
-setup above does not apply; authentication comes from the token in your `.npmrc`.
+After that you can run `pnpm release` to publish the package to npm.laioutr.cloud.
 
 More information for publishing can be found in the [NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm#publish-an-organization-package).
 
