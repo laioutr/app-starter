@@ -35,12 +35,6 @@ See [laioutr.com](https://laioutr.com) for more information about Laioutr.
 
 Follow the [Laioutr NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm) for connecting to [npm.laioutr.cloud](https://npm.laioutr.cloud).
 
-Render `.npmrc.config` with your registry token **before** installing — `@laioutr-core/*` and `@laioutr-app/*` cannot resolve without it:
-
-```bash
-sed "s|NPM_LAIOUTR_TOKEN|$YOUR_TOKEN|" .npmrc.config > .npmrc
-```
-
 - `pnpm install`
 - `npx @laioutr/cli project fetch-rc --project <organization slug>/<project slug> --secret <project secret key>` - This will load the `laioutrrc.json` file with the current remote project configuration.
 - `pnpm dev:prepare`
