@@ -33,11 +33,14 @@ See [laioutr.com](https://laioutr.com) for more information about Laioutr.
 
 ## Quick Setup
 
-Follow the [Laioutr NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm) for connecting to [npm.laioutr.cloud](https://npm.laioutr.cloud).
+Requires Node.js 22.12 or newer and pnpm 10 or newer.
 
-- `pnpm install`
-- `npx @laioutr/cli project fetch-rc --project <organization slug>/<project slug> --secret <project secret key>` - This will load the `laioutrrc.json` file with the current remote project configuration.
-- `pnpm dev:prepare`
+1. `cp .npmrc.config .npmrc` — maps the Laioutr scopes to [npm.laioutr.cloud](https://npm.laioutr.cloud).
+2. `npm login --registry https://npm.laioutr.cloud` — once per machine; see the [Laioutr NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm).
+3. `pnpm install`
+4. `pnpm rc:fetch -p <organization slug>/<project slug> -s <project secret key>` — writes `laioutrrc.json` with your project's configuration.
+   The playground installs every app listed in its `apps`, so add the ones your project uses besides `@laioutr-app/ui`: `pnpm add -D <package>`.
+5. `pnpm dev` — starts the playground on http://localhost:3000.
 
 That's it! You can now use My Laioutr App in your [Laioutr Frontend](https://laioutr.com) ✨
 

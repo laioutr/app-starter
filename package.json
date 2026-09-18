@@ -22,11 +22,12 @@
   },
   "files": [
     "dist"
-],
-"scripts": {
-    "dev": "npm run dev:prepare && nuxi dev playground",
+  ],
+  "scripts": {
+    "dev": "pnpm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "rc:fetch": "laioutr rc fetch",
     "lint": "eslint .",
     "prepack": "nuxt-module-build build",
     "changeset": "changeset",
@@ -45,8 +46,12 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
-    "@laioutr-app/ui": "^2.8.2",
-    "@laioutr-core/devtools": "^0.37.1",
+    "@laioutr-app/ui": "^2.25.0",
+    "@laioutr-core/canonical-types": "^0.34.0",
+    "@laioutr-core/core-types": "^0.56.0",
+    "@laioutr-core/devtools": "^0.56.0",
+    "@laioutr-core/frontend-core": "^0.56.0",
+    "@laioutr/cli": "^0.4.1",
     "@laioutr/eslint-config": "^1.8.8",
     "@laioutr/prettier-config": "^1.1.0",
     "@nuxt/devtools": "^2.6.3",
