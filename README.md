@@ -33,14 +33,13 @@ See [laioutr.com](https://laioutr.com) for more information about Laioutr.
 
 ## Quick Setup
 
-Requires Node.js 22.12 or newer and pnpm 10 or newer.
+Requires Node.js 22.12 or newer and pnpm 10 or newer. The committed `.npmrc` maps the Laioutr scopes to [npm.laioutr.cloud](https://npm.laioutr.cloud).
 
-1. `cp .npmrc.config .npmrc` — maps the Laioutr scopes to [npm.laioutr.cloud](https://npm.laioutr.cloud).
-2. `npm login --registry https://npm.laioutr.cloud` — once per machine; see the [Laioutr NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm).
-3. `pnpm install`
-4. `pnpm rc:fetch -p <organization slug>/<project slug> -s <project secret key>` — writes `laioutrrc.json` with your project's configuration.
+1. `npm login --registry https://npm.laioutr.cloud` — once per machine; the token goes to your user `~/.npmrc`. See the [Laioutr NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm).
+2. `pnpm install`
+3. `pnpm rc:fetch -p <organization slug>/<project slug> -s <project secret key>` — writes `laioutrrc.json` with your project's configuration.
    The playground installs every app listed in its `apps`, so add the ones your project uses besides `@laioutr-app/ui`: `pnpm add -D <package>`.
-5. `pnpm dev` — starts the playground on http://localhost:3000.
+4. `pnpm dev` — starts the playground on http://localhost:3000.
 
 That's it! You can now use My Laioutr App in your [Laioutr Frontend](https://laioutr.com) ✨
 
@@ -87,7 +86,7 @@ Day to day: run `pnpm changeset` to describe your change and merge it. The relea
 
 If you want to publish a private package to npm.laioutr.cloud, you need to:
 
-1. Make sure you have a `.npmrc` with your private npm registry token.
+1. Log in with publish access: `npm login --registry https://npm.laioutr.cloud`, then enable **Publish** on the authorize screen. Keep the token in your user `~/.npmrc` — the project's `.npmrc` is committed.
 2. Add this line to the root of the `package.json` file: `"publishConfig": { "registry": "https://npm.laioutr.cloud/" }`
 3. Make sure your package-name follows the `@laioutr-org/<organization-slug>__<package-name>` format.
 
