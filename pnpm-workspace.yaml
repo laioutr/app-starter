@@ -1,11 +1,16 @@
 shamefullyHoist: true
 strictPeerDependencies: false
+# Below the `engines` floor the install succeeds and the dev server then hangs without naming Node.
+engineStrict: true
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true
   sharp: true
   unrs-resolver: true
   vue-demi: true
+ignoredBuiltDependencies:
+  - protobufjs
+  - yarn
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
