@@ -15,6 +15,9 @@ permissions:
 
 jobs:
   release:
+    # The template itself publishes nothing: `my-laioutr-app` is a placeholder name, and a release
+    # run here only ever fails. Every repository made from the template releases as usual.
+    if: github.repository != 'laioutr/app-starter'
     runs-on: ubuntu-latest
 
     steps:
