@@ -1,0 +1,78 @@
+{
+  "version": 6,
+  "laioutr": {},
+  "config": {},
+  "apps": [{ "name": "@laioutr-app/ui", "version": "latest", "config": {} }],
+  "languages": {
+    "lang_en": {
+      "id": "lang_en",
+      "code": "en",
+      "name": "English",
+      "fallbacks": [],
+      "domains": ["playground.example"]
+    }
+  },
+  "markets": {
+    "market_default": {
+      "id": "market_default",
+      "slug": "default",
+      "name": "Default",
+      "currency": "EUR",
+      "regionCodes": [],
+      "status": "active",
+      "defaultDomainId": "domain_default",
+      "domains": {
+        "domain_default": { "id": "domain_default", "host": "playground.example", "languageId": "lang_en" }
+      },
+      "studio": {}
+    }
+  },
+  "globalSections": {},
+  "pages": {
+    "page_home": {
+      "id": "page_home",
+      "type": "core/home",
+      "path": "/",
+      "queries": {},
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "updatedAt": "2026-01-01T00:00:00.000Z",
+      "variants": {
+        "variant_default": {
+          "id": "variant_default",
+          "queries": {},
+          "seo": { "title": {}, "description": {} },
+          "studio": { "label": "Default" },
+          "createdAt": "2026-01-01T00:00:00.000Z",
+          "updatedAt": "2026-01-01T00:00:00.000Z",
+          "sections": {
+            "header": {},
+            "footer": {},
+            "body": {
+              "section_placeholder": {
+                "id": "section_placeholder",
+                "type": "section",
+                "component": "SectionPageHero",
+                "index": "a0",
+                "createdAt": "2026-01-01T00:00:00.000Z",
+                "updatedAt": "2026-01-01T00:00:00.000Z",
+                "props": {
+                  "heading": { "type": "static-localized", "value": { "en": "Your app playground is running" } },
+                  "subline": {
+                    "type": "static-localized",
+                    "value": {
+                      "en": "This page is placeholder content. To see your project here, run: pnpm rc:fetch -p <organization-slug>/<project-slug> -s <project-secret>"
+                    }
+                  }
+                },
+                "slots": {},
+                "studio": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "redirects": [],
+  "templates": { "blocks": {}, "pages": {}, "sections": {}, "sharedSections": {} }
+}

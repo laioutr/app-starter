@@ -37,7 +37,7 @@ Requires Node.js 22.12 or newer and pnpm 10 or newer. The committed `.npmrc` map
 
 1. `npm login --registry https://npm.laioutr.cloud` — once per machine; the token goes to your user `~/.npmrc`. See the [Laioutr NPM Guide](https://docs.laioutr.com/cockpit/project-settings/npm).
 2. `pnpm install`
-3. `pnpm rc:fetch -p <organization slug>/<project slug> -s <project secret key>` — writes `laioutrrc.json` with your project's configuration.
+3. `pnpm rc:fetch -p <organization slug>/<project slug> -s <project secret key>` — writes `laioutrrc.json` with your project's configuration. Until then, the playground runs on placeholder content from `playground/fixtures/laioutrrc.json`.
    The playground installs every app listed in its `apps`, so add the ones your project uses besides `@laioutr-app/ui`: `pnpm add -D <package>`.
 4. `pnpm dev` — starts the playground on http://localhost:3000.
 
