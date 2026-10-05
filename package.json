@@ -34,7 +34,7 @@
     "version": "changeset version",
     "release": "pnpm run prepack && changeset publish",
     "test": "vitest run",
-    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
+    "test:types": "vue-tsc --noEmit && vue-tsc --noEmit -p src/runtime/server && cd playground && vue-tsc --noEmit",
     "test:watch": "vitest watch"
   },
   "browserslist": [

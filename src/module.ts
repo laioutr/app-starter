@@ -2,6 +2,7 @@
 import { createResolver, defineNuxtModule, installModule } from '@nuxt/kit';
 import { defu } from 'defu';
 import { registerLaioutrApp } from '@laioutr-core/kit';
+import type { Nuxt } from '@nuxt/schema';
 import { name, version } from '../package.json';
 
 /**
@@ -38,6 +39,13 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.runtimeConfig[name] = defu(nuxt.options.runtimeConfig[name] as Parameters<typeof defu>[0], _options);
     nuxt.options.runtimeConfig.public[name] = defu(nuxt.options.runtimeConfig.public[name] as Parameters<typeof defu>[0], _options);
 
+    // Apply runtime config types for this module
+    applyRuntimeConfigTypes(nuxt);
+
+    // Setup TypeScript configuration for the module during development.
+    // This makes type checking respect server and client separation within the module.
+    applyTypeScriptConfig(nuxt, resolve);
+
     await registerLaioutrApp({
       name,
       version,
@@ -65,3 +73,49 @@ export default defineNuxtModule<ModuleOptions>({
     // Add server-only imports, etc.
   },
 });
+
+const applyRuntimeConfigTypes = (nuxt: Nuxt) => {
+  const { resolve } = createResolver(import.meta.url);
+  const typed = (config: unknown, type: string) => ({
+    ...(config as Record<string, unknown>),
+    $schema: { tsType: `import(${JSON.stringify(resolve('./module'))}).${type}` },
+  });
+
+  nuxt.hook('app:templates', (app) => {
+    const index = app.templates.findIndex((template) => template.filename === 'types/schema.d.ts');
+    const schema = app.templates[index];
+    const getContents = schema?.getContents;
+    if (!schema || !getContents) return;
+    app.templates[index] = {
+      ...schema,
+      getContents: (data) => {
+        const { runtimeConfig } = data.nuxt.options;
+        const options = Object.create(data.nuxt.options, {
+          runtimeConfig: {
+            value: {
+              ...runtimeConfig,
+              [name]: typed(runtimeConfig[name], 'RuntimeConfigModulePrivate'),
+              public: { ...runtimeConfig.public, [name]: typed(runtimeConfig.public[name], 'RuntimeConfigModulePublic') },
+            },
+          },
+        });
+        return getContents({ ...data, nuxt: Object.create(data.nuxt, { options: { value: options } }) });
+      },
+    };
+  });
+};
+
+const applyTypeScriptConfig = (nuxt: Nuxt, resolve: (...path: string[]) => string) => {
+  if (nuxt.options._prepare && nuxt.options.rootDir === resolve('..')) {
+    const serverRuntime = resolve('./runtime/server');
+    nuxt.hook('prepare:types', ({ tsConfig }) => {
+      tsConfig.exclude = [...(tsConfig.exclude ?? []), serverRuntime, resolve('../playground')];
+    });
+    nuxt.hook('nitro:init', (nitro) => {
+      nitro.hooks.hook('types:extend', ({ tsConfig }) => {
+        if (!tsConfig) return;
+        tsConfig.include = [...(tsConfig.include ?? []).filter((path) => !path.endsWith('**/*')), serverRuntime];
+      });
+    });
+  }
+};
